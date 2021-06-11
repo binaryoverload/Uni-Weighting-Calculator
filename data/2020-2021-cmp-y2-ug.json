@@ -1,0 +1,106 @@
+{
+    "name": "2020/2021 Undergraduate Computer Science - Year 2",
+    "years": [{
+        "year": 2,
+        "modules": [{
+                "name": "Artificial Intelligence",
+                "code": "CMP2020M",
+                "semester": "b",
+                "cats": 15,
+                "assignments": [{
+                        "type": "coursework",
+                        "weighting": 0.5
+                    },
+                    {
+                        "type": "tca",
+                        "weighting": 0.5
+                    }
+                ]
+            },
+            {
+                "name": "Advanced Programming",
+                "code": "CMP2801M",
+                "semester": "a",
+                "cats": 15,
+                "assignments": [{
+                    "type": "coursework",
+                    "weighting": 1
+                }]
+            },
+            {
+                "name": "Cloud Computing",
+                "code": "CMP2808M",
+                "semester": "b",
+                "cats": 15,
+                "assignments": [{
+                        "type": "coursework",
+                        "weighting": 0.4
+                    },
+                    {
+                        "type": "tca",
+                        "weighting": 0.6
+                    }
+                ]
+            },
+            {
+                "name": "Network Fundementals",
+                "code": "CMP2803M",
+                "semester": "a",
+                "cats": 15,
+                "assignments": [{
+                        "type": "coursework",
+                        "weighting": 0.4
+                    },
+                    {
+                        "type": "coursework",
+                        "weighting": 0.6
+                    }
+                ]
+            },
+            {
+                "name": "Team Software Engineering",
+                "code": "CMP2804M",
+                "semester": "a+b",
+                "cats": 30,
+                "assignments": [{
+                        "type": "coursework",
+                        "weighting": 0.2
+                    },
+                    {
+                        "type": "interview",
+                        "weighting": 0.2
+                    },
+                    {
+                        "type": "coursework",
+                        "weighting": 0.6
+                    }
+                ]
+            },
+            {
+                "name": "User Experience Design",
+                "code": "CMP2805M",
+                "semester": "b",
+                "cats": 15,
+                "assignments": [{
+                        "type": "coursework",
+                        "weighting": 0.5
+                    },
+                    {
+                        "type": "tca",
+                        "weighting": 0.5
+                    }
+                ]
+            },
+            {
+                "name": "Scalable Database Systems",
+                "code": "CMP2806M",
+                "semester": "a",
+                "cats": 15,
+                "assignments": [{
+                    "type": "coursework",
+                    "weighting": 1
+                }]
+            }
+        ]
+    }]
+}
