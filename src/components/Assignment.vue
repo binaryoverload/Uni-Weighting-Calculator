@@ -2,7 +2,7 @@
   <div>
     <label>
       <span>Assignment {{ assignment.number }} ({{ assignment.weighting * 100 }}%)</span>
-      <input class="ml-2 py-0.5 rounded w-16 text-center" type="number" v-model="internalValue" v-on:input="onChange">
+      <input class="ml-2 py-0.5 rounded w-16 text-center hide-input-spinner" type="number" v-model="internalValue" v-on:input="onChange">
     </label>
   </div>
 </template>

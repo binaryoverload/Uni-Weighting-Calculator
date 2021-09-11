@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+input.hide-input-spinner::-webkit-outer-spin-button,
+input.hide-input-spinner::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number].hide-input-spinner {
+    -moz-appearance:textfield; /* Firefox */
+}
