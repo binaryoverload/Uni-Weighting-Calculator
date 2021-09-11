@@ -27,7 +27,8 @@ export default {
   },
   props: {
     mod: Object,
-    assignments: Array
+    assignments: Array,
+    total: Number
   },
   data() {
     return {
@@ -35,7 +36,7 @@ export default {
     }
   },
   computed: {
-    total() {
+    internalTotal() {
       let result = 0
       Object.keys(this.assignmentValues).forEach(key => {
         let assignment = this.assignments.find(a => a.number === key)
@@ -60,6 +61,7 @@ export default {
       if (!Object.values(val).every(score => score === 0)) {
         localStorage.setItem(`module_${this.mod.id}`, JSON.stringify(val))
       }
+      this.$emit("totalUpdate", this.internalTotal)
     }
   },
   created() {

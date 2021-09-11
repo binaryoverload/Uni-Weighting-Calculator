@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="container mx-auto">
+  <div id="app" class="container mx-auto relative">
     <select name="institution" id="" v-model="selectedInstitution">
       <option value="" disabled>Select an institution</option>
       <option :value="i" :key="i" v-for="i in institutions">{{ i }}</option>
@@ -13,8 +13,9 @@
       <option :value="year" :key="year" v-for="year in availableYears">Year {{ year }}</option>
     </select>
     <hr class="my-2">
+    <h1 class="bg-white md:right-1/4 md:fixed md:shadow text-lg font-bold px-4 py-2 mb-2">Overall total: {{ grandTotal }}%</h1>
     <div class="space-y-2">
-      <Module :key="mod.id" :mod="mod" :assignments="getAssignmentsForModule(mod)" v-for="mod in availableModules"/>
+      <Module :key="mod.id" :mod="mod" v-on:totalUpdate="updateModuleTotal(mod.id, $event)" :total="totals[mod.id]" :assignments="getAssignmentsForModule(mod)" v-for="mod in availableModules"/>
     </div>
   </div>
 </template>
@@ -35,7 +36,8 @@ export default {
       modules: [],
       selectedInstitution: null,
       selectedCourse: null,
-      selectedYear: null
+      selectedYear: null,
+      totals: {}
     }
   },
   computed: {
@@ -58,6 +60,20 @@ export default {
         }
         return semesterCompare
       })
+    },
+    grandTotal: function() {
+      let grandTotal = 0;
+      let totalCats = 0;
+      Object.keys(this.totals).forEach((moduleId) => {
+        let module = this.availableModules.find(module => module.id === moduleId);
+        if (!module) return;
+        let cats = module.cats
+        totalCats += +cats;
+        console.log(cats)
+        grandTotal += this.totals[moduleId] * cats;
+      })
+      console.log(grandTotal, totalCats)
+      return grandTotal / (totalCats || 120);
     }
   },
   watch: {
@@ -74,6 +90,9 @@ export default {
   methods: {
     getAssignmentsForModule(module) {
       return this.assignments.filter(assignment => assignment.module_id === module.id)
+    },
+    updateModuleTotal(moduleId, total) {
+      this.totals = { ...this.totals, [moduleId]: total }
     }
   },
   created() {
@@ -85,6 +104,9 @@ export default {
     });
     fetchToCsv("modules.csv", output => {
       this.modules = output
+      this.modules.forEach((module) => {
+        this.totals[module.id] = 0;
+      })
     })
     this.selectedInstitution = localStorage.getItem("selectedInstitution")
     this.selectedCourse = localStorage.getItem("selectedCourse")
