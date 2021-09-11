@@ -17,3 +17,7 @@ export function fetchToCsv(relativeUrl, callback) {
             })
         })
 }
+
+export function round(number, dp) {
+    return Math.round(number * Math.pow(10, dp)) / Math.pow(10, dp)
+}

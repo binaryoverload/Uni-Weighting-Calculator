@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import {fetchToCsv} from "./utils"
+import { fetchToCsv, round} from "./utils"
 import Module from "./components/Module.vue"
 
 export default {
@@ -73,7 +73,7 @@ export default {
         grandTotal += this.totals[moduleId] * cats;
       })
       console.log(grandTotal, totalCats)
-      return grandTotal / (totalCats || 120);
+      return round(grandTotal / (totalCats || 120), 2);
     }
   },
   watch: {
