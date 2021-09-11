@@ -1,0 +1,10 @@
+﻿id,module_code,course,year,semester,cats,name
+1,CMP2020M,uol_bsc_compsci;uol_bsc_gamecomp,2,b,15,Artificial Intelligence
+2,CMP2801M,uol_bsc_compsci;uol_bsc_gamecomp,2,a,15,Advanced Programming
+3,CMP2808M,uol_bsc_compsci,2,b,15,Cloud Computing
+4,CMP2803M,uol_bsc_compsci,2,a,15,Network Fundamentals
+5,CMP2804M,uol_bsc_compsci;uol_bsc_gamecomp,2,a;b,30,Team Software Engineering
+6,CMP2805M,uol_bsc_compsci;uol_bsc_gamecomp,2,b,15,User Experience Design
+7,CMP2806M,uol_bsc_compsci;uol_bsc_gamecomp,2,a,15,Scalable Database Systems
+8,CGP2015M,uol_bsc_gamecomp,2,b,15,Game Programming
+9,CGP2014M,uol_bsc_gamecomp,2,a,15,Concept Development
