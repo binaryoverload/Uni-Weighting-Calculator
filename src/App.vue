@@ -1,8 +1,8 @@
 <template>
-  <div id="app">
+  <div id="app" class="container mx-auto">
     <select name="institution" id="" v-model="selectedInstitution">
       <option value="" disabled>Select an institution</option>
-      <option :value="i" :key="i" v-for="i in institutions">{{i}}</option>
+      <option :value="i" :key="i" v-for="i in institutions">{{ i }}</option>
     </select>
     <select name="course" id="" v-model="selectedCourse" v-show="selectedInstitution !== null">
       <option value="" disabled>Select a course</option>
@@ -13,12 +13,14 @@
       <option :value="year" :key="year" v-for="year in availableYears">Year {{ year }}</option>
     </select>
     <hr class="my-2">
-    <Module :key="mod.id" :mod="mod" :assignments="getAssignmentsForModule(mod)" v-for="mod in availableModules" />
+    <div class="space-y-2">
+      <Module :key="mod.id" :mod="mod" :assignments="getAssignmentsForModule(mod)" v-for="mod in availableModules"/>
+    </div>
   </div>
 </template>
 
 <script>
-import { fetchToCsv } from "./utils"
+import {fetchToCsv} from "./utils"
 import Module from "./components/Module.vue"
 
 export default {
@@ -43,12 +45,18 @@ export default {
     availableCourses: function () {
       return this.courses.filter(course => course.institution === this.selectedInstitution)
     },
-    availableYears: function() {
+    availableYears: function () {
       return new Set(this.modules.filter(mod => mod.course.includes(this.selectedCourse)).map(mod => mod.year))
     },
-    availableModules: function() {
+    availableModules: function () {
       return this.modules.filter(mod => {
         return mod.course.includes(this.selectedCourse) && mod.year === this.selectedYear
+      }).sort((modA, modB) => {
+        const semesterCompare = modA.semester.localeCompare(modB.semester)
+        if (semesterCompare === 0) {
+          return modA.name.localeCompare(modB.name)
+        }
+        return semesterCompare
       })
     }
   },
