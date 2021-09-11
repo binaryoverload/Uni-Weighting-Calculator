@@ -60,6 +60,17 @@ export default {
       })
     }
   },
+  watch: {
+    selectedInstitution(val) {
+      localStorage.setItem("selectedInstitution", val)
+    },
+    selectedCourse(val) {
+      localStorage.setItem("selectedCourse", val)
+    },
+    selectedYear(val) {
+      localStorage.setItem("selectedYear", val)
+    },
+  },
   methods: {
     getAssignmentsForModule(module) {
       return this.assignments.filter(assignment => assignment.module_id === module.id)
@@ -75,6 +86,9 @@ export default {
     fetchToCsv("modules.csv", output => {
       this.modules = output
     })
+    this.selectedInstitution = localStorage.getItem("selectedInstitution")
+    this.selectedCourse = localStorage.getItem("selectedCourse")
+    this.selectedYear = localStorage.getItem("selectedYear")
   }
 }
 </script>

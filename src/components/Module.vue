@@ -1,6 +1,6 @@
 <template>
   <div class="border px-8 py-4">
-    <h1 class="text-lg text-blue-700">{{ mod.name }}</h1>
+    <h1 class="text-lg text-blue-700">{{ mod.module_code }} - {{ mod.name }}</h1>
     <h2 class="text-gray-600 mb-2">Semester {{ semester }} &middot; {{ mod.cats }} CATS</h2>
     <div class="flex flex-col justify-center">
       <div class="space-y-1">
@@ -38,8 +38,10 @@ export default {
     total() {
       let result = 0
       Object.keys(this.assignmentValues).forEach(key => {
-        const weight = this.assignments.find(a => a.number === key).weighting
-        result += (this.assignmentValues[key] * weight)
+        let assignment = this.assignments.find(a => a.number === key)
+        if (assignment) {
+          result += (this.assignmentValues[key] * assignment.weighting)
+        }
       })
       // Rounding to square off float error and limit to 2d.p
       return Math.round(result * 100) / 100;
@@ -53,10 +55,23 @@ export default {
       this.assignmentValues = {...this.assignmentValues, [number]: value}
     }
   },
+  watch: {
+    assignmentValues: function(val) {
+      if (!Object.values(val).every(score => score === 0)) {
+        localStorage.setItem(`module_${this.mod.id}`, JSON.stringify(val))
+      }
+    }
+  },
   created() {
     this.assignments.forEach(assignment => {
       this.assignmentValues = {...this.assignmentValues, [assignment.number]: 0}
     })
+
+    const localStored = localStorage.getItem(`module_${this.mod.id}`)
+    if (localStored) {
+      const storedToObj = JSON.parse(localStored)
+      this.assignmentValues = { ...this.assignmentValues, ...storedToObj }
+    }
   }
 }
 </script>
