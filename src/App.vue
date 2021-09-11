@@ -58,13 +58,13 @@ export default {
     }
   },
   created() {
-    fetchToCsv("/assignments.csv", output => {
+    fetchToCsv("./assignments.csv", output => {
       this.assignments = output
     });
-    fetchToCsv("/courses.csv", output => {
+    fetchToCsv("./courses.csv", output => {
       this.courses = output
     });
-    fetchToCsv("/modules.csv", output => {
+    fetchToCsv("./modules.csv", output => {
       this.modules = output
     })
   }
