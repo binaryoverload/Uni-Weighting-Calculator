@@ -35,7 +35,7 @@
       </select>
     </div>
     <hr class="my-2">
-    <h1 class="bg-white md:right-1/4 sticky top-0 md:fixed shadow text-lg px-4 py-2 mb-2">Overall average:
+    <h1 class="bg-white md:right-1/4 sticky top-0 md:top-auto md:fixed shadow text-lg px-4 py-2 mb-2">Overall average:
       <span class="font-semibold">{{
           grandAverage
         }}%</span></h1>
