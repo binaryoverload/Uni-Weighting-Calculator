@@ -12,7 +12,7 @@
             v-for="assignment in assignments.sort()"/>
       </div>
 
-      <p class="mt-2 text-blue-700 rounded-sm h-full">Total: <span class="font-semibold">{{ total }}%</span></p>
+      <p class="mt-2 text-blue-700 rounded-sm h-full">Average: <span class="font-semibold">{{ average }}%</span></p>
     </div>
 
   </div>
@@ -29,7 +29,7 @@ export default {
   props: {
     mod: Object,
     assignments: Array,
-    total: Number
+    average: Number
   },
   data() {
     return {
@@ -37,7 +37,7 @@ export default {
     }
   },
   computed: {
-    internalTotal() {
+    internalAverage() {
       let result = 0
       Object.keys(this.assignmentValues).forEach(key => {
         let assignment = this.assignments.find(a => a.number === key)
@@ -62,7 +62,7 @@ export default {
       if (!Object.values(val).every(score => score === 0)) {
         localStorage.setItem(`module_${this.mod.id}`, JSON.stringify(val))
       }
-      this.$emit("totalUpdate", this.internalTotal)
+      this.$emit("averageUpdate", this.internalAverage)
     }
   },
   created() {
